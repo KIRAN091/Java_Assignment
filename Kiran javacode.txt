@@ -1,0 +1,98 @@
+
+// Name:Kiran Kaur
+// Student ID:201905020
+// Date Submitted:19/03/2021
+// Class IN2203 Section Number G1
+// Name of work: Assignment 1: The Gambling Game
+      
+package gaming;
+import java.util.Random;
+import java.util.Scanner;
+
+public class MainApplication {
+    public static void main(String[] args){
+    Casino c= new Casino();
+    c.OrganizeNewGame();
+    }
+}
+class Casino{
+    Player p1= new Player();
+    Game g1= new Game();
+    String userAnswer;
+        Scanner s= new Scanner(System.in);
+        public void OrganizeNewGame(){
+            System.out.println("Welcome to the Casino: Would you like to play a game? (y/n)");
+        userAnswer= s.nextLine();
+        if(userAnswer.equals("y")){
+            System.out.println("let's get started");
+                    g1.PlayGame();
+                    p1.Play();
+}
+else
+{System.out.println("Good bye");}
+}
+}
+class Game{
+    Random r= new Random();
+    int ComputerGuess= r.nextInt(100) ;
+    
+    public void PlayGame(){
+        System.out.println("Guess a numner from 1 to 100");
+        System.out.println("I'll guess a number now ");
+        System.out.println(" If your guess is within 20 of my guess: then you win . Else i will WIN  ");
+        ComputerGuess= ComputerGuess();
+        
+        
+    }
+     public int ComputerGuess(){
+      int programGuess;
+       programGuess = r.nextInt(100);
+      return programGuess;
+     }
+}
+class Player extends Game{
+    String Name;
+    int  Age=0;
+    Game obj= new Game();
+    
+    public void Play()
+    {
+        Scanner sc= new Scanner(System.in);
+        System.out.println("Enter Player's name");
+        Name= sc.nextLine();
+        
+        System.out.println("Enter player's Age");
+        Age= sc.nextInt();
+        int trials= 5;
+        int guess;
+        
+        for(int i=1; i<= trials;i++)
+        {
+            System.out.println("Guess any number");
+            guess= sc.nextInt();
+            
+            if(Math.abs(guess - obj.ComputerGuess)<20 )
+            {
+            	System.out.println("Hurrayyy!! YOU WIN");
+                System.out.println("The Number was " + obj.ComputerGuess );
+            break;
+       }
+            
+            else 
+            {
+                System.out.println("Hard Luck! Try again ");
+            }
+            if(i==trials)
+            {
+                System.out.println("Sorry, You have exhausted all tries");
+                System.out.println("The number was " +  ComputerGuess);
+            }
+            
+        }
+        
+        
+    }
+    
+}
+        
+
